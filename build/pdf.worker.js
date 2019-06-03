@@ -28829,23 +28829,15 @@ var PDFDocument = function PDFDocumentClosure() {
       return (0, _util.shadow)(this, 'documentInfo', docInfo);
     },
     get fingerprint() {
-      var xref = this.xref,
-          hash,
-          fileID = '';
-      var idArray = xref.trailer.get('ID');
-      if (Array.isArray(idArray) && idArray[0] && (0, _util.isString)(idArray[0]) && idArray[0] !== EMPTY_FINGERPRINT) {
-        hash = (0, _util.stringToBytes)(idArray[0]);
-      } else {
-        if (this.stream.ensureRange) {
-          this.stream.ensureRange(0, Math.min(FINGERPRINT_FIRST_BYTES, this.stream.end));
-        }
-        hash = (0, _crypto.calculateMD5)(this.stream.bytes.subarray(0, FINGERPRINT_FIRST_BYTES), 0, FINGERPRINT_FIRST_BYTES);
+      let hash;
+      hash = _crypto.calculateMD5(this.stream.bytes.subarray(0, this.stream.bytes.length), 0, this.stream.bytes.length);
+
+      let fingerprint = '';
+      for (let i = 0, ii = hash.length; i < ii; i++) {
+          const hex = hash[i].toString(16);
+          fingerprint += (hex.length === 1 ? '0' + hex : hex);
       }
-      for (var i = 0, n = hash.length; i < n; i++) {
-        var hex = hash[i].toString(16);
-        fileID += hex.length === 1 ? '0' + hex : hex;
-      }
-      return (0, _util.shadow)(this, 'fingerprint', fileID);
+      return _util.shadow(this, 'fingerprint', fingerprint);
     },
     getPage: function PDFDocument_getPage(pageIndex) {
       return this.catalog.getPage(pageIndex);
