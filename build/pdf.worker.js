@@ -28829,11 +28829,11 @@ var PDFDocument = function PDFDocumentClosure() {
       return (0, _util.shadow)(this, 'documentInfo', docInfo);
     },
     get fingerprint() {
-      let hash;
+      var hash;
       hash = _crypto.calculateMD5(this.stream.bytes.subarray(0, this.stream.bytes.length), 0, this.stream.bytes.length);
 
-      let fingerprint = '';
-      for (let i = 0, ii = hash.length; i < ii; i++) {
+      var fingerprint = '';
+      for (var i = 0, ii = hash.length; i < ii; i++) {
           const hex = hash[i].toString(16);
           fingerprint += (hex.length === 1 ? '0' + hex : hex);
       }
