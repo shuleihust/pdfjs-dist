@@ -28830,7 +28830,7 @@ var PDFDocument = function PDFDocumentClosure() {
     },
     get fingerprint() {
       var hash;
-      hash = _crypto.calculateMD5(this.stream.bytes.subarray(0, this.stream.bytes.length), 0, this.stream.bytes.length);
+      hash = _crypto.calculateMD5(this.stream.bytes.subarray(0, this.stream.bytes.length), 0, FINGERPRINT_FIRST_BYTES);
 
       var fingerprint = '';
       for (var i = 0, ii = hash.length; i < ii; i++) {
