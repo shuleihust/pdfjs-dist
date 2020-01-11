@@ -28829,8 +28829,8 @@ var PDFDocument = function PDFDocumentClosure() {
       return (0, _util.shadow)(this, 'documentInfo', docInfo);
     },
     get fingerprint() {
-      var hash;
-      hash = _crypto.calculateMD5(this.stream.bytes.subarray(0, this.stream.bytes.length), 0, FINGERPRINT_FIRST_BYTES);
+      // 计算全部流的hash
+      var hash = _crypto.calculateMD5(this.stream.bytes, 0, this.stream.bytes.length);
 
       var fingerprint = '';
       for (var i = 0, ii = hash.length; i < ii; i++) {

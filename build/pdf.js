@@ -3185,7 +3185,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var DEFAULT_RANGE_CHUNK_SIZE = 65536;
+var DEFAULT_RANGE_CHUNK_SIZE = 10 * 1024 * 1024; // 计算HASH，取消文件分片机制，把分片限制在10M（文件大小）后端文件大小上传限制10M
 var isWorkerDisabled = false;
 var workerSrc;
 var isPostMessageTransfersDisabled = false;
